@@ -36,11 +36,47 @@ export default function Application(props) {
         key={appointment.id}
         {...appointment}
         interviewers={dailyInterviewers}
+        bookInterview={bookInterview}
+        cancelInterview={cancelInterview}
       />
     );
   });
   appointmentsArray.push(<Appointment key='last' time='5pm'/>)
   console.log(appointmentsArray);
+
+  function bookInterview(id, interview) {
+    return new Promise ((resolve,reject) => {
+      console.log(id, interview);
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+    setState({...state, appointments});
+    axios.put(`/api/appointments/${id}`, {interview: interview})
+      .then(() => {
+        resolve();
+      })
+      .catch((err) => {
+        reject(err);
+      })
+    });
+  };
+
+  function cancelInterview(id) {
+    return new Promise ((resolve, reject) => {
+      axios.delete(`/api/appointments/${id}`)
+        .then(() => {
+          resolve();
+        })
+        .catch((err) => {
+          reject(err);
+        })
+    });
+  }
 
   return (
     <main className="layout">

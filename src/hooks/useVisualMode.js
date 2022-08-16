@@ -8,7 +8,7 @@ export default function useVisualMode(initial){
     setMode(targetMode);
     if (replace) {
       const replaceLast = [...history];
-      replaceLast[replaceLast - 1] = targetMode;
+      replaceLast[replaceLast.length - 1] = targetMode;
       setHistory(replaceLast);
     } else {
       setHistory(prev => [...prev, targetMode]);
