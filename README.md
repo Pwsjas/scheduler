@@ -4,26 +4,31 @@ Interview Scheduler is a single-page appointment scheduling app which allows use
 
 ## Final Product
 
-Tweeter resizes based on window size, providing different viewing experiences for Desktop and Mobile users.
+Interview Scheduler has various appointment states depending on the user's input and the database's data.
 
-Desktop:
+A day with no scheduled appointments:
 
-!["Screenshot of desktop version"](https://github.com/Pwsjas/tweeter/blob/master/docs/desktop.png?raw=true)
+!["Screenshot of a day with no scheduled appointments"](https://github.com/Pwsjas/scheduler/blob/master/docs/Blank.png?raw=true)
 
-Mobile:
+Various appointment states (scheduled, hover, create/edit, confirm delete):
 
-!["Screenshot of mobile version"](https://github.com/Pwsjas/tweeter/blob/master/docs/mobile.png?raw=true)
+!["Screenshot of various states of appointments"](https://github.com/Pwsjas/scheduler/blob/master/docs/States.png?raw=true)
 
+Saving and Deleting indicators:
+
+!["Screenshot of saving and deleting indicators"](https://github.com/Pwsjas/scheduler/blob/master/docs/Progress.png?raw=true)
 ## Dependencies
 
 - Node.js
-- body-parser
-- chance
-- Express
-- md5
+- axios
+- classnames
+- normalize.css
+- react
+- react-dom
+- react-scripts
 
 ## Getting Started
 
 - Install all dependencies (using the `npm install` command).
-- Run the development web server using the `npm start` command (or `node index.js` within the `server` folder as an alternative).
-- View the webpage at `http://localhost:8080` by default.
+- Run the development web server using the `npm start` command 
+- View the webpage at `http://localhost:8000` by default.
