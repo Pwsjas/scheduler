@@ -2,7 +2,7 @@ import React from "react";
 import "components/Application.scss";
 import DayList from "./DayList";
 import Appointment from "components/Appointment/index";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
+import { getAppointmentsForDay, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData";
 
 export default function Application(props) {
@@ -28,7 +28,6 @@ export default function Application(props) {
     );
   });
   appointmentsArray.push(<Appointment key='last' time='5pm'/>)
-  console.log(appointmentsArray);
 
   return (
     <main className="layout">

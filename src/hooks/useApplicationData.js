@@ -12,35 +12,13 @@ export default function useApplicationData() {
   
   const setDay = day => setState({...state, day})
 
-  // const updateSpots = (state, appointments) => {
-
-  //   const days = [...state.days];
-  //   const index = days.findIndex(d => d.name === state.day);
-  //   const dayObj = days[index];
-
-  //   let spots = 0;
-  //   for(const id of dayObj.appointments) {
-  //     const appointment = appointments[id];
-  //     if (!appointment.interview) { //null
-  //       spots++;
-  //     }
-  //   }
-
-  //   const newDay = {...dayObj, spots};
-  //   days[index] = newDay;
-
-  //   console.log("Spots = ", spots);
-  //   dayObj.spots = spots;
-  //   return days;
-  // };
-
   const updateSpots = (state, appointments) => {
     const dayObj = state.days.find(d => d.name === state.day);
 
     let spots = 0;
     for(const id of dayObj.appointments) {
       const appointment = appointments[id];
-      if (!appointment.interview) { //null
+      if (!appointment.interview) {
         spots++;
       }
     }
@@ -61,10 +39,8 @@ export default function useApplicationData() {
     });
   }, []);
   
-  //Promise outside bookinterview?
   function bookInterview(id, interview) {
     return new Promise ((resolve,reject) => {
-      console.log(id, interview);
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview }

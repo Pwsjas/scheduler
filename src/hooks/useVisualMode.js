@@ -24,6 +24,5 @@ export default function useVisualMode(initial){
     }
   };
 
-  console.log(history, mode);
   return {mode, transition, back};
 };
