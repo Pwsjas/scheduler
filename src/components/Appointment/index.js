@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import 'components/Appointment/styles.scss';
 import Header from "components/Appointment/Header";
 import Show from "components/Appointment/Show";
@@ -23,10 +23,13 @@ export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
 
   function save(name, interviewer) {
+    console.log(interviewer);
     const interview = {
       student: name,
       interviewer
     };
+
+    console.log(interview);
     transition(SAVING, true);
     props.bookInterview(props.id, interview)
       .then(() => {
@@ -60,14 +63,14 @@ export default function Appointment(props) {
     <article className="appointment">
       <Header time={props.time}/>
       {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-      {mode === SHOW && (
+      {mode === SHOW && 
         <Show
           student={props.interview.student}
           interviewer={getInterviewerName(props.interview.interviewer)}
           onDelete={() => transition(CONFIRM)}
           onEdit={() => transition(EDIT)}
         />
-      )}
+      }
       {mode === CREATE && <Form
         interviewers={props.interviewers}
         onSave={save}
