@@ -4,6 +4,7 @@ export default function useVisualMode(initial){
   const [mode, setMode] = useState(initial);
   const [history, setHistory] = useState([initial]);
 
+  //Set 'mode' to the given variable and update mode history accordingly
   function transition(targetMode, replace = false){
     setMode(targetMode);
     if (replace) {
@@ -13,9 +14,11 @@ export default function useVisualMode(initial){
     }
   };
 
+  //Set mode to its previous state
   function back() {
     if (history.length > 1) {
-      let popped = [...history];
+      //Copy history and pop() the last value
+      const popped = [...history];
       popped.pop();
       setHistory(popped);
       setMode(popped[popped.length-1]);

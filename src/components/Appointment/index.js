@@ -22,29 +22,36 @@ const ERROR_DELETE="ERROR_DELETE";
 export default function Appointment(props) {
   const { mode, transition, back } = useVisualMode(props.interview ? SHOW : EMPTY);
 
+  //Save an appointment given name and interviewer
   function save(name, interviewer) {
     const interview = {
       student: name,
       interviewer
     };
 
+    //Transition to saving screen, attempt to save appointment to the server
     transition(SAVING);
     props.bookInterview(props.id, interview)
       .then(() => {
+        //Display booked appointment upon success
         transition(SHOW);
       })
       .catch(() => {
+        //Display error upon failure
         transition(ERROR_SAVE, true);
       });
   };
 
   function confirmCancel() {
+    //Transition to deleting screen, attempt to delete appointment on the server
     transition(DELETING, true);
     props.cancelInterview(props.id)
       .then(() =>  {
+        //Display an empty appointment slot upon success
         transition(EMPTY);
       })
       .catch(() => {
+        //Display error upon failure
         transition(ERROR_DELETE, true);
       });
   }

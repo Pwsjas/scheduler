@@ -12,6 +12,7 @@ export default function useApplicationData() {
   
   const setDay = day => setState({...state, day})
 
+  //Return a new days array with updated spots values
   const updateSpots = (state, appointments) => {
     const dayObj = state.days.find(d => d.name === state.day);
 
@@ -29,6 +30,7 @@ export default function useApplicationData() {
     return days;
   }
 
+  //Retrieve required API data on load
   useEffect(() => {
     Promise.all([
       axios.get('/api/days'),
@@ -39,6 +41,9 @@ export default function useApplicationData() {
     });
   }, []);
   
+  //Book an interview
+  //Create new appointments array, replacing the specific appointment
+  //Attempt to push the changes to the server
   function bookInterview(id, interview) {
     return new Promise ((resolve,reject) => {
     const appointment = {
@@ -52,16 +57,19 @@ export default function useApplicationData() {
 
     axios.put(`/api/appointments/${id}`, {interview: interview})
       .then(() => {
+        //Set state with the new appointments / spots values upon success
         const days = updateSpots(state, appointments);
         setState(prev => ({...prev, appointments, days}));
         resolve();
       })
+        //Return an error upon failure
       .catch((err) => {
         reject(err);
       })
     });
   };
   
+  //Cancel an interview by setting it to null
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id], interview: null
@@ -74,10 +82,12 @@ export default function useApplicationData() {
     return new Promise ((resolve, reject) => {
       axios.delete(`/api/appointments/${id}`)
         .then(() => {
+          //Set state with the new appointments / spots values upon success
           const days = updateSpots(state, appointments);
           setState(prev => ({...prev, appointments, days}));
           resolve();
         })
+          //Return an error upon failure
         .catch((err) => {
           reject(err);
         })
