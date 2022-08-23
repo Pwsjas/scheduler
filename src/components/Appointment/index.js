@@ -56,7 +56,7 @@ export default function Appointment(props) {
       });
   }
 
-  //Return the name of an interviewer given their ID
+  //Return the name of an interviewer given their id
   function getInterviewerName (interviewerID) {
     for (const interviewer of props.interviewers) {
       if (interviewer.id === interviewerID) {
