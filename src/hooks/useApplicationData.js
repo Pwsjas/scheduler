@@ -13,6 +13,7 @@ export default function useApplicationData() {
   const setDay = day => setState({...state, day})
 
   //Return a new days array with updated spots values
+  //Parameters: current state, updated appointments array
   const updateSpots = (state, appointments) => {
     const dayObj = state.days.find(d => d.name === state.day);
 

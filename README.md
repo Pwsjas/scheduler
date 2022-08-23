@@ -32,3 +32,6 @@ Saving and Deleting indicators:
 - Install all dependencies (using the `npm install` command).
 - Run the development web server using the `npm start` command 
 - View the webpage at `http://localhost:8000` by default.
+
+- This application also requires a specific API to interact with.
+Setup and instructions for this API can be found at https://github.com/lighthouse-labs/scheduler-api
