@@ -180,7 +180,8 @@ onCancel={action('onCancel')}
     <Appointment
       id={1}
       time="4pm"
-      interview={{ student: "Lydia Miller-Jones", interviewer }}
+      interview={{ student: "Lydia Miller-Jones", interviewer: interviewer.id }}
+      interviewers={interviewers}
     />
     <Appointment time="5pm" />
   </Fragment>
